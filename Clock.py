@@ -1,18 +1,15 @@
-'''import datetime, time
-while True:
-    print(datetime.datetime.now())
-    time.sleep(1)'''
-'''import time
-while True:
-# seconds passed since epoch
-    seconds = time.time()
-
-# convert the time in seconds since the epoch to a readable format
-    local_time = time.ctime(seconds)
-
-    print("Local time:", local_time)
-    time.sleep(1)'''
 import time
+from tkinter import *
+win = Tk()
+width = win.winfo_screenwidth()
+height = win.winfo_screenheight()
+win.geometry("%dx%d" % (width, height))
+
+win.title(" Clock by AdamUltra ")
+
+
+def close():
+    quit()
 
 
 def struct():
@@ -20,7 +17,16 @@ def struct():
     STime = time.localtime()
 
 
-while True:
+def refresh():
     struct()
     clock = time.strftime("%H:%M:%S", STime)
-    print(clock, end='\r')
+    # Labels
+    Clock = Label(win, text=f"Clock: {clock}", font='bold')
+    Clock.place(x=600, y=350)
+    Clock.update()
+    time.sleep(1)
+    refresh()
+
+
+refresh()
+win.mainloop()
